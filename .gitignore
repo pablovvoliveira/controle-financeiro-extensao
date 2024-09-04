@@ -1,0 +1,69 @@
+# Arquivos de byte compilados Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ambiente virtual
+venv/
+env/
+ENV/
+
+# Arquivos de configuração do PyCharm
+.idea/
+
+# Arquivos de configuração do VS Code
+.vscode/
+
+# Arquivos de banco de dados SQLite
+*.db
+*.sqlite3
+
+# Arquivos de log
+*.log
+
+# Arquivos temporários
+*.tmp
+
+# Arquivos de sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos de relatório PDF gerados
+*.pdf
+
+# Arquivos de configuração local
+config.ini
+settings.json
+
+# Arquivos de cache pip
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Arquivos de distribuição / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Arquivos de teste de cobertura
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
