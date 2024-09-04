@@ -1,5 +1,3 @@
-print("Versão atualizada do código em execução")
-
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np

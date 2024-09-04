@@ -324,9 +324,39 @@ class InterfaceUsuario(QMainWindow):
         # Forçar quebra de página
         story.append(PageBreak())
 
-        # Previsão de Gastos (na segunda página)
+        # Previsão de Gastos 
         story.append(Paragraph("Previsão de Gastos", styles['Heading2']))
         story.append(self.get_image(self.analise_dados.previsao_gastos, width=7*inch, height=5*inch))
+
+        # Balanço mensal
+        story.append(PageBreak())
+        story.append(Paragraph("Balanço Mensal", styles['Heading2']))
+        
+        balanco = self.analise_dados.balanco_mensal()
+        dados_balanco = [['Mês', 'Entrada', 'Saída', 'Saldo']]
+        for _, row in balanco.iterrows():
+            dados_balanco.append([
+                row['mes'].strftime('%m/%y'),  # Formato mm/YY
+                f"R$ {row.get('entrada', 0):.2f}",
+                f"R$ {row.get('saída', 0):.2f}",
+                f"R$ {row['saldo']:.2f}"
+            ])
+        
+        tabela_balanco = Table(dados_balanco)
+        tabela_balanco.setStyle(TableStyle([
+            ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+            ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+            ('FONTSIZE', (0, 0), (-1, 0), 12),
+            ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+            ('FONTNAME', (0, 1), (-1, -1), 'Helvetica'),
+            ('FONTSIZE', (0, 1), (-1, -1), 10),
+            ('TOPPADDING', (0, 1), (-1, -1), 6),
+            ('BOTTOMPADDING', (0, 1), (-1, -1), 6),
+            ('GRID', (0, 0), (-1, -1), 1, colors.black),
+            ('TEXTCOLOR', (2, 1), (2, -1), colors.red),  
+            ('FONTNAME', (3, 1), (3, -1), 'Helvetica-Bold'),  
+        ]))
+        story.append(tabela_balanco)
 
         doc.build(story)
         print(f"Análise de dados gerada em {pdf_filename}")
